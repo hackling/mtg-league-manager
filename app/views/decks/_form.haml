@@ -2,8 +2,7 @@
 - if deck.list
   %pre= deck.list
 
-
-- if deck.round_id == Round.next_round.id
+- if deck.round_id == Round.next_round.id || deck.list.nil?
   = simple_form_for(deck, html: {class: 'form-horizontal' }) do |f|
     = f.input :round_id, as: :hidden, :input_html => {value: Round.next_round.id}
     = f.input :list

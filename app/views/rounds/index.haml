@@ -1,6 +1,7 @@
 %h2 Rounds
-= link_to 'Create New Round', new_round_path
-%br
+- if current_user.admin?
+  = link_to 'Create New Round', new_round_path
+  %br
 
 - if rounds.present?
   %table.table.table-condensed
