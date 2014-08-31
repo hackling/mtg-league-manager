@@ -28,6 +28,6 @@ class PairingsController < ApplicationController
   end
 
   def pairing_results_params
-    params.require(:pairing).permit(:player_1_wins, :player_2_wins, :draws)
+    params.require(:pairing).permit(:round_id, :player_1_id, :player_2_id, :player_1_wins, :player_2_wins, :draws)
   end
 end
