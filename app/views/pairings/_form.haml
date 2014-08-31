@@ -1,0 +1,7 @@
+= simple_form_for(pairing, html: {class: 'form-horizontal' }) do |f|
+  = f.input :round_id, collection: Round.all
+  = f.input :player_1_id, collection: User.all
+  = f.input :player_2_id, collection: User.all
+
+  = f.button :submit, class: "btn-primary"
+  = link_to "Cancel", :back, class: "btn btn-default"

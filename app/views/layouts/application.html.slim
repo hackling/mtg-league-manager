@@ -20,16 +20,16 @@ html lang="en"
           a.navbar-brand href="#" Brisbane Vintage League
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li.active : a href="#{authenticated_root_path}" Profile Page
-            li: a href="/" Pairings
-            li: a href="/" Standings
-            li: a href="/" Results Entry
-            li: a href="/" Deck Submission
+            li: a href="#{authenticated_root_path}" Profile Page
+            li: a href="#{pairings_path}" Pairings
+            /li: a href="/" Standings
+            /li: a href="/" Results Entry
+            /li: a href="/" Deck Submission
           .navbar-form.navbar-right role="form"
             - if current_user
               .form-group
                 / TODO: REVEAL THYSELF
-                ' Logged in as: #{current_user.display_name}
+                ' Logged in as: #{current_user.to_s}
                 = link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-default'
             - else
               .form-group

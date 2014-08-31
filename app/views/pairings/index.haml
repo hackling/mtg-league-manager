@@ -1,0 +1,19 @@
+%h2 Pairings
+- if current_user.admin?
+  = link_to 'Create New Pairing', new_pairing_path
+  %br
+
+- if pairings.present?
+  - Round.all.order('id DESC').each do |round|
+    = round.to_s
+    %table
+      - round.pairings.each do |pairing|
+        %tr
+          %td
+            = link_to pairing.to_s, pairing
+            - if owns_pairing?(pairing)
+              = link_to 'Update Results', enter_result_pairing_path(pairing)
+    %br
+- else
+  There are no pairings
+

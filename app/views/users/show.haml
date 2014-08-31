@@ -1,12 +1,29 @@
-%h1
-  = current_user.display_name
-= link_to 'Update Details', edit_user_registration_path
-%br
+%h1= user.to_s
+%table
+  %tr
+    %td
+      = user.email
+  %tr
+    %td
+      = user.phone_number
+  - if user == current_user
+    %tr
+      %td
+        = link_to 'Update Details', edit_user_registration_path
+  %br
 
-%h2
-  Current Pairings
-%br
+- if user.current_pairing.present?
+  %h2 Current Pairing
+  = user.current_pairing.to_s
+  - if user.current_pairing.owns_pairing?(current_user)
+    = link_to 'Enter Results', enter_result_pairing_path(user.current_pairing)
+  %br
 
-%h2
-  Previous Pairings
+- if user.previous_pairings.present?
+  %h2 Previous Pairings
+  %table
+    - user.previous_pairings.each do |pairing|
+      %tr
+        %td
+          = pairing.extended_to_s
 

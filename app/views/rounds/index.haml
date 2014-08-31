@@ -1,0 +1,14 @@
+%h2 Rounds
+= link_to 'Create New Round', new_round_path
+%br
+
+- if rounds.present?
+  %table
+    - rounds.each do |round|
+      %tr
+        %td
+          = link_to round.to_s, round
+
+- else
+  There are no Rounds
+

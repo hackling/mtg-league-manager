@@ -11,6 +11,8 @@ gem 'haml'
 gem 'slim'
 gem 'decent_exposure'
 gem 'better_errors'
+gem 'binding_of_caller'
+gem 'simple_form'
 
 gem 'jquery-rails'
 gem 'turbolinks'

@@ -1,0 +1,24 @@
+%h2 Pairing
+%br
+
+= "Round: #{pairing.round.to_s}"
+%table
+  %thead
+    %th Player
+    %th Wins
+    %th Draws
+  %tr
+    %td= pairing.player_1.to_s
+    %td= pairing.player_1_wins
+    %td
+  %tr
+    %td= pairing.player_2.to_s
+    %td= pairing.player_2_wins
+    %td
+  %tr
+    %td
+    %td
+    %td= pairing.draws.to_i
+
+- if pairing.owns_pairing?(current_user)
+  = link_to 'Update Results', enter_result_pairing_path(pairing)

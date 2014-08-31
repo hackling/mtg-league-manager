@@ -1,0 +1,13 @@
+%h2 #{round.to_s}
+%br
+
+- if round.pairings.present?
+  %table
+    - rounds.pairings.each do |pairing|
+      %tr
+        %td
+          = link_to pairing.to_s, pairing
+
+- else
+  There are no pairings for this round
+

@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831002549) do
+ActiveRecord::Schema.define(version: 20140831020425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pairings", force: true do |t|
+    t.integer  "round_id"
+    t.integer  "player_1_id"
+    t.integer  "player_2_id"
+    t.integer  "player_1_wins"
+    t.integer  "player_2_wins"
+    t.integer  "draws"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pairings", ["player_1_id"], name: "index_pairings_on_player_1_id", using: :btree
+  add_index "pairings", ["player_2_id"], name: "index_pairings_on_player_2_id", using: :btree
+  add_index "pairings", ["round_id"], name: "index_pairings_on_round_id", using: :btree
+
+  create_table "rounds", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140831002549) do
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
     t.string   "phone_number",                        null: false
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

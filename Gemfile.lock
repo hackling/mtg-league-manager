@@ -33,6 +33,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
@@ -44,6 +46,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    debug_inspector (0.0.2)
     decent_exposure (2.3.2)
     devise (3.3.0)
       bcrypt (~> 3.0)
@@ -103,6 +106,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.0.2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -138,6 +144,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   decent_exposure
@@ -149,6 +156,7 @@ DEPENDENCIES
   rails (= 4.1.4)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  simple_form
   slim
   spring
   turbolinks

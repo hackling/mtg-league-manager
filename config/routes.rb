@@ -11,6 +11,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pairings do
+    member do
+      get 'enter_result'
+      post 'submit_result'
+    end
+  end
+
+  resources :rounds
+  resources :users
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
