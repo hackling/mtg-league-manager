@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def previous_pairings
-    self.pairings.where("round_id != ?", Round.round_in_progress.id).order('round_id DESC')
+    self.pairings.where("round_id != ?", Round.round_in_progress.try(:id) || 1).order('round_id DESC')
   end
 end

@@ -7,7 +7,11 @@ class Round < ActiveRecord::Base
   end
 
   def self.round_in_progress
-    Round.where(id: Pairing.last_round.to_i + 1).first_or_create!
+    if Pairing.last_round
+      Round.where(id: Pairing.last_round).first
+    else
+      Round.where(id: 1).first_or_create!
+    end
   end
 
   def self.next_round
