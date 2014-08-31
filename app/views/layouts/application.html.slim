@@ -1,0 +1,46 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title Hammerhead
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+    / IE shim plz
+    / HTML5 shim plz
+  body role="document"
+
+    .navbar.navbar-inverse
+      .container
+        .navbar-header
+          a.navbar-brand href="#" Brisbane Vintage League
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.active : a href="#{authenticated_root_path}" Profile Page
+            li: a href="/" Pairings
+            li: a href="/" Standings
+            li: a href="/" Results Entry
+            li: a href="/" Deck Submission
+          .navbar-form.navbar-right role="form"
+            - if current_user
+              .form-group
+                / TODO: REVEAL THYSELF
+                ' Logged in as: #{current_user.display_name}
+                = link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-default'
+            - else
+              .form-group
+                = link_to "Sign In", new_user_session_path, class: 'btn btn-success'
+
+    .container
+      - flash.each do |type, content|
+        p.alert class=bootstrap_flash_class(type) = content
+
+      = yield
+
+      hr
+
+      Copyright &copy; 2014 Ball so hard

@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def display_name
-    "#{self.first_name} #{self.last_name}"
+    "#{self.first_name} #{self.last_name}".titleize
   end
 end
