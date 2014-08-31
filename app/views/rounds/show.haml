@@ -2,12 +2,32 @@
 %br
 
 - if round.pairings.present?
-  %table
-    - rounds.pairings.each do |pairing|
-      %tr
-        %td
-          = link_to pairing.to_s, pairing
+  %table.table.table-condensed
+    %thead
+      %th Player 1
+      %th Player 1 Wins
+      %th Player 2
+      %th Player 2 Wins
+      %th Draws
+    %tbody
+      - round.pairings.each do |pairing|
+        %tr
+          %td= link_to pairing.player_1.to_s, pairing.player_1
+          %td= pairing.player_1_wins
+          %td= link_to pairing.player_2.to_s, pairing.player_2
+          %td= pairing.player_2_wins
+          %td= pairing.draws.to_i
 
 - else
   There are no pairings for this round
 
+%h2 Decks
+%table.table.table-condensed
+  %thead
+    %th Player
+    %th Deck Submitted?
+  %tbody
+    - User.all.each do |user|
+      %tr
+        %td= user.to_s
+        %td= Deck.where(user: user, round_id: round.id).first.present?

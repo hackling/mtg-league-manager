@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :rounds
   resources :users
+  resources :decks
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :decks
 
   def to_s
     "#{self.first_name} #{self.last_name}".titleize
@@ -13,10 +14,10 @@ class User < ActiveRecord::Base
   end
 
   def current_pairing
-    self.pairings.where(:round => Round.current_round).first
+    self.pairings.where(:round => Round.round_in_progress).first
   end
 
   def previous_pairings
-    self.pairings.where("round_id != ?", Round.current_round.id).order('round_id DESC')
+    self.pairings.where("round_id != ?", Round.round_in_progress.id).order('round_id DESC')
   end
 end

@@ -1,29 +1,38 @@
 %h1= user.to_s
-%table
+%table.table.table-condensed
   %tr
-    %td
-      = user.email
+    %th Email Address
+    %td= user.email
   %tr
-    %td
-      = user.phone_number
+    %th Phone Number
+    %td= user.phone_number
   - if user == current_user
     %tr
-      %td
+      %td{:colspan => 2}
         = link_to 'Update Details', edit_user_registration_path
-  %br
 
 - if user.current_pairing.present?
-  %h2 Current Pairing
-  = user.current_pairing.to_s
-  - if user.current_pairing.owns_pairing?(current_user)
-    = link_to 'Enter Results', enter_result_pairing_path(user.current_pairing)
+  %h2 Current Pairing: Round #{Round.round_in_progress.id}
+  %table.table.table-condensed
+    %td= link_to user.current_pairing.to_s, user.current_pairing
+    - if user.current_pairing.owns_pairing?(current_user)
+      %td= link_to 'Enter Results', enter_result_pairing_path(user.current_pairing)
   %br
 
 - if user.previous_pairings.present?
   %h2 Previous Pairings
-  %table
+  %table.table.table-condensed
     - user.previous_pairings.each do |pairing|
       %tr
         %td
           = pairing.extended_to_s
 
+- if user == current_user
+  %h2 Decks
+  = link_to 'Submit New Deck', new_deck_path
+  - if user.decks.present?
+    %table.table.table-condensed
+      - user.decks.each do |deck|
+        %tr
+          %td
+            = link_to "Round #{deck.round_id}", edit_deck_path(deck)

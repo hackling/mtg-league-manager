@@ -5,12 +5,13 @@
 
 - if pairings.present?
   - Round.all.order('id DESC').each do |round|
-    = round.to_s
-    %table
+    %h4= round.to_s
+    %table.table.table-condensed
       - round.pairings.each do |pairing|
         %tr
           %td
             = link_to pairing.to_s, pairing
+          %td
             - if owns_pairing?(pairing)
               = link_to 'Update Results', enter_result_pairing_path(pairing)
     %br

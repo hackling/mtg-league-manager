@@ -1,23 +1,23 @@
 %h2 Pairing
 %br
 
-= "Round: #{pairing.round.to_s}"
-%table
+%h4= "#{pairing.round.to_s}"
+%table.table.table-condensed
   %thead
     %th Player
     %th Wins
     %th Draws
   %tr
-    %td= pairing.player_1.to_s
+    %td= link_to pairing.player_1.to_s, pairing.player_1
     %td= pairing.player_1_wins
     %td
   %tr
-    %td= pairing.player_2.to_s
+    %td= link_to pairing.player_2.to_s, pairing.player_2
     %td= pairing.player_2_wins
     %td
   %tr
-    %td
-    %td
+    %td -
+    %td -
     %td= pairing.draws.to_i
 
 - if pairing.owns_pairing?(current_user)
